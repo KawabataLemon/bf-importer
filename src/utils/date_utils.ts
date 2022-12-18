@@ -1,4 +1,4 @@
-import { format, addDays } from 'date-fns';
+import { format, addDays, parse, isDate } from 'date-fns';
 
 class DateUtils {
   generateRangeStrings(from: Date, to: Date) {
@@ -30,6 +30,15 @@ class DateUtils {
 
   formatDate(date: Date): string {
     return format(date, 'yyyy-MM-dd')
+  }
+
+  dateFromString(dateStr: string) {
+    return parse(dateStr, 'yyyy-MM-dd', new Date())
+  }
+
+  checkFormattableString(dateStr: string) {
+    console.log('ljlkjlkj', isDate(dateStr))
+    return isDate(dateStr);
   }
 }
 
