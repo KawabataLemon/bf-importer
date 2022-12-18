@@ -37,7 +37,6 @@ class DateUtils {
   }
 
   checkFormattableString(dateStr: string) {
-    console.log('ljlkjlkj', isDate(dateStr))
     return isDate(dateStr);
   }
 }
