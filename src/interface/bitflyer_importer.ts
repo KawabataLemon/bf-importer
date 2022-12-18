@@ -1,8 +1,9 @@
 import { OHLC, OHLC_TYPE_LABEL } from '../constants/ohlc'
 import { FileResult } from '../constants/results';
-import { client } from '../infrastructures/firebase_storage';
 import { utils } from '../utils/date_utils'
-import { service } from '../services/ohlc-export-service';
+import { service as export_service } from '../services/ohlc_export_service';
+import { service as download_service } from '../services/ohlc_download_service';
+
 class BitflyerImporter {
 
   // 指定期間にあるファイルを返す
@@ -23,8 +24,8 @@ class BitflyerImporter {
     const exportedFiles = [];
     for (let filename of fileNames) {
       try {
-        const ohlc = await client.getFile(filename);
-        const result = await service.exportToCSV(type,filename, ohlc);  
+        const ohlc = await download_service.downloadOhlc(filename);
+        const result = await export_service.exportToCSV(type,filename, ohlc);  
         exportedFiles.push(result);
       } catch (e) {
         continue;

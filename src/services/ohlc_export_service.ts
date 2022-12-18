@@ -1,7 +1,7 @@
 import { DataFrame } from 'danfojs-node';
 import { OHLC } from '../constants/ohlc';
-import { OhlcColumns, OhlcResponse } from '../models/OhlcResponse';
-import { mkdirSync } from 'fs';
+import { OhlcColumns, OhlcResponse } from '../models/ohlc_response';
+
 // とってきたデータを書き込みに行ったりするサービス
 class OhlcExportService {
   async exportToCSV(ohlc: OHLC,jsonFilename: string, jsonData: OhlcResponse) {
