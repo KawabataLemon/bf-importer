@@ -1,4 +1,8 @@
+*.csv
+
 ### https://raw.github.com/github/gitignore/cdd9e946da421758c6f42c427c7bc65c8326155d/Node.gitignore
+
+src/credentials/**
 
 # Logs
 logs
@@ -120,3 +124,4 @@ dist
 .pnp.*
 
 
+.env
