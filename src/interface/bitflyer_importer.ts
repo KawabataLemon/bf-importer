@@ -19,12 +19,18 @@ class BitflyerImporter {
       // 該当の足に匹敵するファイル群を返しておしまい
       return fileNames;
     }
-    let filename = fileNames.pop() ?? ""
-    const ohlc = await client.getFile(filename);
-    service.exportToCSV(filename, ohlc);
-    // ファイル自体を読み取って返す
-    // 結合したりpythonで処理しやすくする
-    return [];
+
+    const exportedFiles = [];
+    for (let filename of fileNames) {
+      try {
+        const ohlc = await client.getFile(filename);
+        const result = await service.exportToCSV(type,filename, ohlc);  
+        exportedFiles.push(result);
+      } catch (e) {
+        continue;
+      }
+    }
+    return exportedFiles;
   }
 }
 
